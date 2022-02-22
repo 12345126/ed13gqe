@@ -11,15 +11,33 @@ describe('Good Class Unit Testing', () => {
         it("Quantity should be equal min-quantity", () => {
             expect(goodObject.currentQuantity).toBe(goodObject.minQuantity)
         })
-        it("isImported should be false", () => {
+        it("Min-quantity should be more than zero", () => {
+            expect(goodObject.minQuantity).toBeGreaterThan(0)
+        })
+        it("IsImported should be false", () => {
             expect(goodObject.currentIsImported).toBeFalsy()
+        })
+        it("Valid Types array should not be empty", () => {
+            expect(goodObject.validTypes.length).toBeGreaterThan(0)
         })
         it("Type should be valid type", () => {
             expect(goodObject.validTypes).toContain(goodObject.currentType)
         })
+        it("Tax free types array should not be empty", () => {
+            expect(goodObject.taxFreeTypes.length).toBeGreaterThan(0)
+        })
+        it("Tax free types should be valid types", () => {
+            for (let taxFreeType of goodObject.taxFreeTypes) {
+                expect(goodObject.validTypes).toContain(taxFreeType)
+            }
+        })
         it("Price should be equal min-price", () => {
             expect(goodObject.currentPrice).toBe(goodObject.minPrice)
         })
+        it("Min-price should be more than zero", () => {
+            expect(goodObject.currentPrice).toBeGreaterThan(0)
+        })
+        
     })
     describe('Setter Testing', () => {
         beforeEach(() => {
@@ -45,11 +63,6 @@ describe('Good Class Unit Testing', () => {
     describe('Tax Ratio testing',() => {
         beforeEach(() => {
             goodObject = new GoodClass()
-        })
-        it("Tax free types should be valid types", () => {
-            for (let taxFreeType of goodObject.taxFreeTypes) {
-                expect(goodObject.validTypes).toContain(taxFreeType)
-            }
         })
         it("Tax ratio should be 15%", () => {
             goodObject.isImported = true
