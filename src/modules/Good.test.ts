@@ -42,4 +42,39 @@ describe('Good Class Unit Testing', () => {
             expect(() => {goodObject.currentPrice = goodObject.maxPrice+1}).toThrow(RangeError)
         })
     })
+
+    describe('Tax Ratio testing',() => {
+        beforeEach(() => {
+            goodObject = new GoodClass()
+        })
+        it("Free tax types should be valid types", () => {
+            for (let taxFreeType of goodObject.taxFreeTypes) {
+                expect(goodObject.validTypes).toContain(taxFreeType)
+            }
+        })
+        it("Tax ratio should be 15%", () => {
+            goodObject.isImported = true
+            const notTaxFreeType = goodObject.validTypes.find((type: string) => !(goodObject.taxFreeTypes.includes(type)))
+            goodObject.type = notTaxFreeType
+            expect(goodObject.taxRatio).toBe(15)
+        })
+        it("Tax ratio should be 10%", () => {
+            goodObject.isImported = false
+            const notTaxFreeType = goodObject.validTypes.find((type: string) => !(goodObject.taxFreeTypes.includes(type)))
+            goodObject.type = notTaxFreeType
+            expect(goodObject.taxRatio).toBe(10)
+        })
+        it("Tax ratio should be 5%", () => {
+            goodObject.isImported = true
+            goodObject.type = goodObject.taxFreeTypes[0]
+            expect(goodObject.taxRatio).toBe(5)
+        })
+        it("Tax ratio should be 0%", () => {
+            goodObject.isImported = false
+            goodObject.type = goodObject.taxFreeTypes[0]
+            expect(goodObject.taxRatio).toBe(0)
+        })
+    })
+
+
 })

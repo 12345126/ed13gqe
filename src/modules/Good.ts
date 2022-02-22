@@ -6,7 +6,8 @@ export class GoodClass{
     private isImported:boolean
 
     readonly validTypes = ['books', 'food', 'medical', 'other']
-    private type:string
+    readonly taxFreeTypes = ['books', 'food', 'medical']
+    private type: string
     
     readonly nameMinLength = 1
     readonly nameMaxLength = 10
@@ -54,6 +55,18 @@ export class GoodClass{
             throw new RangeError()
         }
         this.price = newPrice
+    }
+
+    get taxRatio():number{
+        let ratio = 0
+        if (this.isImported) {
+            ratio += 5
+        }
+        const isTaxFreeType = (this.taxFreeTypes.includes(this.type)) 
+        if (!isTaxFreeType) {
+            ratio += 10
+        }
+        return ratio
     }
 
     get currentQuantity() { return this.quantity }
