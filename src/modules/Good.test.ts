@@ -42,12 +42,11 @@ describe('Good Class Unit Testing', () => {
             expect(() => {goodObject.currentPrice = goodObject.maxPrice+1}).toThrow(RangeError)
         })
     })
-
     describe('Tax Ratio testing',() => {
         beforeEach(() => {
             goodObject = new GoodClass()
         })
-        it("Free tax types should be valid types", () => {
+        it("Tax free types should be valid types", () => {
             for (let taxFreeType of goodObject.taxFreeTypes) {
                 expect(goodObject.validTypes).toContain(taxFreeType)
             }
@@ -75,6 +74,48 @@ describe('Good Class Unit Testing', () => {
             expect(goodObject.taxRatio).toBe(0)
         })
     })
-
-
+    describe('Price after tax testing',() => {
+        beforeEach(() => {
+            goodObject = new GoodClass()
+        })
+        it("Price after tax should be 12.49", () => {
+            goodObject.isImported = false
+            goodObject.type = goodObject.taxFreeTypes[0]
+            goodObject.price = 12.49
+            goodObject.quantity = 1
+            expect(goodObject.priceAfterTex).toBe("12.49")
+        })
+        it("Price after tax should be 10.50", () => {
+            goodObject.isImported = true
+            goodObject.type = goodObject.taxFreeTypes[0]
+            goodObject.price = 10
+            goodObject.quantity = 1
+            expect(goodObject.priceAfterTex).toBe("10.50")
+        })
+        it("Price after tax should be 11.85", () => {
+            goodObject.isImported = true
+            goodObject.type = goodObject.taxFreeTypes[0]
+            goodObject.price = 11.25
+            goodObject.quantity = 1
+            expect(goodObject.priceAfterTex).toBe("11.85")
+        })
+        it("Price after tax should be 54.65", () => {
+            goodObject.isImported = true
+            const notTaxFreeType = goodObject.validTypes.find((type: string) => !(goodObject.taxFreeTypes.includes(type)))
+            goodObject.type = notTaxFreeType
+            goodObject.price = 47.50
+            goodObject.quantity = 1
+            expect(goodObject.priceAfterTex).toBe("54.65")
+        })
+        it("Price after tax should be (3 x max-quantity)", () => {
+            goodObject.isImported = false
+            goodObject.type = goodObject.taxFreeTypes[0]
+            goodObject.price = 3
+            goodObject.quantity = goodObject.maxQuantity
+            expect(goodObject.priceAfterTex).toBe((goodObject.price*goodObject.maxQuantity).toFixed(2))
+        })
+    })
 })
+
+
+

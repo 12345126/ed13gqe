@@ -57,7 +57,7 @@ export class GoodClass{
         this.price = newPrice
     }
 
-    get taxRatio():number{
+    get taxRatio(): number{
         let ratio = 0
         if (this.isImported) {
             ratio += 5
@@ -67,6 +67,14 @@ export class GoodClass{
             ratio += 10
         }
         return ratio
+    }
+
+    get priceAfterTex(): string {
+        const ratio = (100 + this.taxRatio) / 100
+        let result = (this.quantity * this.price * ratio).toFixed(2)
+        const lastInteger = parseInt(result.charAt(result.length-1))
+        result = result.substring(0,result.length-1)+ ((this.isInRage(lastInteger,1,5)) ? '5' : lastInteger.toString())
+        return result
     }
 
     get currentQuantity() { return this.quantity }
