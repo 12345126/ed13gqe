@@ -14,6 +14,9 @@ describe('Good Class Unit Testing', () => {
         it("Min-quantity should be more than zero", () => {
             expect(goodObject.minQuantity).toBeGreaterThan(0)
         })
+        it("Max-quantity should be more than min-quantity", () => {
+            expect(goodObject.maxQuantity).toBeGreaterThan(goodObject.minQuantity)
+        })
         it("IsImported should be false", () => {
             expect(goodObject.currentIsImported).toBeFalsy()
         })
@@ -37,11 +40,17 @@ describe('Good Class Unit Testing', () => {
         it("Min-price should be more than zero", () => {
             expect(goodObject.currentPrice).toBeGreaterThan(0)
         })
+        it("Max-price should be more than min-price", () => {
+            expect(goodObject.maxPrice).toBeGreaterThan(goodObject.minPrice)
+        })
         it("Name should be empty string", () => {
             expect(goodObject.currentName).toBe('')
         })
-        it("Name max length should be more than zero", () => {
+        it("Name-min-length should be more than zero", () => {
             expect(goodObject.nameMinLength).toBeGreaterThan(0)
+        })
+        it("Name-max-length should be more than name-min-length", () => {
+            expect(goodObject.nameMaxLength).toBeGreaterThan(goodObject.nameMinLength)
         })
     })
     describe('Setter Testing', () => {
@@ -64,10 +73,10 @@ describe('Good Class Unit Testing', () => {
         it("Price should be less than or equal max-price", () => {
             expect(() => {goodObject.currentPrice = goodObject.maxPrice+1}).toThrow(RangeError)
         })
-        it("Name should be less than or equal min-price", () => {
+        it("Name length should be greater than or equal min-name-length", () => {
             expect(() => {goodObject.currentName = ''}).toThrow(RangeError)
         })
-        it("Name should be greater than or equal max-price", () => {
+        it("Name length should be less than or equal max-name-length", () => {
             const tempName = Array.from({length:goodObject.nameMaxLength+1}).fill(0).toString()
             expect(() => {goodObject.currentName = tempName}).toThrow(RangeError)
         })
