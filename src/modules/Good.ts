@@ -23,6 +23,39 @@ export class GoodClass{
         this.price = this.minPrice
     }
 
+    private isInRage(value:number, minValue:number, maxValue:number):boolean {
+        const isValidValue = value >= minValue && value <= maxValue
+        return isValidValue 
+    }
+
+    set currentQuantity(newQuantity:number) {
+        const isValidRangeQuantity = this.isInRage(newQuantity, this.minQuantity, this.maxQuantity)
+        if (!isValidRangeQuantity) {
+            throw new RangeError()
+        }
+        this.quantity = newQuantity
+    }
+
+    set currentIsImported(newValue:boolean) {
+        this.isImported = newValue
+    }
+
+    set currentType(newType: string) {
+        const isValidType = (newType in this.validTypes)
+        if (!isValidType){
+            throw new TypeError()
+        }
+        this.type = newType
+    }
+
+    set currentPrice(newPrice:number) {
+        const isValidRange = this.isInRage(newPrice, this.minPrice, this.maxPrice)
+        if (!isValidRange){
+            throw new RangeError()
+        }
+        this.price = newPrice
+    }
+
     get currentQuantity() { return this.quantity }
     get currentIsImported() { return this.isImported }
     get currentType() { return this.type }
