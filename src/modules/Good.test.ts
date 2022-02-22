@@ -37,7 +37,12 @@ describe('Good Class Unit Testing', () => {
         it("Min-price should be more than zero", () => {
             expect(goodObject.currentPrice).toBeGreaterThan(0)
         })
-        
+        it("Name should be empty string", () => {
+            expect(goodObject.currentName).toBe('')
+        })
+        it("Name max length should be more than zero", () => {
+            expect(goodObject.nameMinLength).toBeGreaterThan(0)
+        })
     })
     describe('Setter Testing', () => {
         beforeEach(() => {

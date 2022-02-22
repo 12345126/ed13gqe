@@ -7,11 +7,11 @@ export class GoodClass{
 
     readonly validTypes = ['books', 'food', 'medical', 'other']
     readonly taxFreeTypes = ['books', 'food', 'medical']
-    private type: string
+    private type:string
     
     readonly nameMinLength = 1
     readonly nameMaxLength = 10
-    private name = undefined
+    private name:string
     
     readonly minPrice = 1
     readonly maxPrice = 1000
@@ -21,6 +21,7 @@ export class GoodClass{
         this.quantity = this.minQuantity
         this.isImported = false
         this.type = this.validTypes[0]
+        this.name = ''
         this.price = this.minPrice
     }
 
@@ -80,5 +81,6 @@ export class GoodClass{
     get currentQuantity() { return this.quantity }
     get currentIsImported() { return this.isImported }
     get currentType() { return this.type }
-    get currentPrice(){ return this.price }
+    get currentPrice() { return this.price }
+    get currentName(){ return this.name }
 }
