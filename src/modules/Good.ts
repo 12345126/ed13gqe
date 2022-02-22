@@ -58,6 +58,14 @@ export class GoodClass{
         this.price = newPrice
     }
 
+    set currentName(newName: string) {
+        const isValidRange = this.isInRage(newName.length, this.nameMinLength,this.nameMaxLength)
+        if (!isValidRange){
+            throw new RangeError()
+        }
+        this.name = newName
+    }
+
     get taxRatio(): number{
         let ratio = 0
         if (this.isImported) {

@@ -48,21 +48,28 @@ describe('Good Class Unit Testing', () => {
         beforeEach(() => {
             goodObject = new GoodClass()
         })
-        it("Quantity should be less than or equal min-quantity", () => {
+        it("Quantity should be grater than or equal min-quantity", () => {
             expect(() => {goodObject.currentQuantity = goodObject.minQuantity-1}).toThrow(RangeError)
         })
-        it("Quantity should be greater than or equal max-quantity", () => {
+        it("Quantity should be less than or equal max-quantity", () => {
             expect(() => {goodObject.currentQuantity = goodObject.maxQuantity+1}).toThrow(RangeError)
         })
         it("Type should be valid type", () => {
             const invalidType = 'test-'+Math.random()
             expect(() => {goodObject.currentType = invalidType}).toThrow(TypeError)
         })
-        it("Price should be less than or equal min-price", () => {
+        it("Price should be greater than or equal min-price", () => {
             expect(() => {goodObject.currentPrice = goodObject.minPrice-1}).toThrow(RangeError)
         })
-        it("Price should be greater than or equal max-price", () => {
+        it("Price should be less than or equal max-price", () => {
             expect(() => {goodObject.currentPrice = goodObject.maxPrice+1}).toThrow(RangeError)
+        })
+        it("Name should be less than or equal min-price", () => {
+            expect(() => {goodObject.currentName = ''}).toThrow(RangeError)
+        })
+        it("Name should be greater than or equal max-price", () => {
+            const tempName = Array.from({length:goodObject.nameMaxLength+1}).fill(0).toString()
+            expect(() => {goodObject.currentName = tempName}).toThrow(RangeError)
         })
     })
     describe('Tax Ratio testing',() => {
