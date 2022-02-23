@@ -1,28 +1,28 @@
 export class GoodClass{
-    readonly minQuantity = 1
-    readonly maxQuantity = 10
+    static readonly minQuantity = 1
+    static readonly maxQuantity = 10
     private quantity:number
     
     private isImported:boolean
 
-    readonly validTypes = ['books', 'food', 'medical', 'other']
+    static readonly validTypes = ['books', 'food', 'medical', 'other']
     readonly taxFreeTypes = ['books', 'food', 'medical']
     private type:string
     
-    readonly nameMinLength = 1
-    readonly nameMaxLength = 10
+    static readonly nameMinLength = 1
+    static readonly nameMaxLength = 10
     private name:string
     
-    readonly minPrice = 1
-    readonly maxPrice = 1000
+    static readonly minPrice = 1
+    static readonly maxPrice = 1000
     private price:number
 
     constructor() {
-        this.quantity = this.minQuantity
+        this.quantity = GoodClass.minQuantity
         this.isImported = false
-        this.type = this.validTypes[0]
+        this.type = GoodClass.validTypes[0]
         this.name = ''
-        this.price = this.minPrice
+        this.price = GoodClass.minPrice
     }
 
     private isInRage(value:number, minValue:number, maxValue:number):boolean {
@@ -31,7 +31,7 @@ export class GoodClass{
     }
 
     set currentQuantity(newQuantity:number) {
-        const isValidRangeQuantity = this.isInRage(newQuantity, this.minQuantity, this.maxQuantity)
+        const isValidRangeQuantity = this.isInRage(newQuantity, GoodClass.minQuantity, GoodClass.maxQuantity)
         if (!isValidRangeQuantity) {
             throw new RangeError()
         }
@@ -43,7 +43,7 @@ export class GoodClass{
     }
 
     set currentType(newType: string) {
-        const isValidType = this.validTypes.includes(newType)
+        const isValidType = GoodClass.validTypes.includes(newType)
         if (!isValidType){
             throw new TypeError()
         }
@@ -51,7 +51,7 @@ export class GoodClass{
     }
 
     set currentPrice(newPrice:number) {
-        const isValidRange = this.isInRage(newPrice, this.minPrice, this.maxPrice)
+        const isValidRange = this.isInRage(newPrice, GoodClass.minPrice, GoodClass.maxPrice)
         if (!isValidRange){
             throw new RangeError()
         }
@@ -59,7 +59,7 @@ export class GoodClass{
     }
 
     set currentName(newName: string) {
-        const isValidRange = this.isInRage(newName.length, this.nameMinLength,this.nameMaxLength)
+        const isValidRange = this.isInRage(newName.length, GoodClass.nameMinLength,GoodClass.nameMaxLength)
         if (!isValidRange){
             throw new RangeError()
         }

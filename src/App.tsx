@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { GoodClass } from './modules/Good';
 import { GoodsList } from './components/GoodsList';
 import useArray from './customHooks/useArray';
+import { GoodAdder } from './components/GoodAdder';
 
 export const App = () => {
 
@@ -27,8 +28,9 @@ export const App = () => {
 
   const { array: goods, set:setGood, push:addGood, clear:removeAllGoods } = useArray(goodsInitialArray)
 
-  return (
-    <GoodsList goods={goods}/>
-  )
+  return (<>
+    <GoodsList goods={goods} />
+    <GoodAdder/>
+  </>)
 }
 

@@ -9,48 +9,48 @@ describe('Good Class Unit Testing', () => {
             goodObject = new GoodClass()
         })
         it("Quantity should be equal min-quantity", () => {
-            expect(goodObject.currentQuantity).toBe(goodObject.minQuantity)
+            expect(goodObject.currentQuantity).toBe(GoodClass.minQuantity)
         })
         it("Min-quantity should be more than zero", () => {
-            expect(goodObject.minQuantity).toBeGreaterThan(0)
+            expect(GoodClass.minQuantity).toBeGreaterThan(0)
         })
         it("Max-quantity should be more than min-quantity", () => {
-            expect(goodObject.maxQuantity).toBeGreaterThan(goodObject.minQuantity)
+            expect(GoodClass.maxQuantity).toBeGreaterThan(GoodClass.minQuantity)
         })
         it("IsImported should be false", () => {
             expect(goodObject.currentIsImported).toBeFalsy()
         })
         it("Valid Types array should not be empty", () => {
-            expect(goodObject.validTypes.length).toBeGreaterThan(0)
+            expect(GoodClass.validTypes.length).toBeGreaterThan(0)
         })
         it("Type should be valid type", () => {
-            expect(goodObject.validTypes).toContain(goodObject.currentType)
+            expect(GoodClass.validTypes).toContain(goodObject.currentType)
         })
         it("Tax free types array should not be empty", () => {
             expect(goodObject.taxFreeTypes.length).toBeGreaterThan(0)
         })
         it("Tax free types should be valid types", () => {
             for (let taxFreeType of goodObject.taxFreeTypes) {
-                expect(goodObject.validTypes).toContain(taxFreeType)
+                expect(GoodClass.validTypes).toContain(taxFreeType)
             }
         })
         it("Price should be equal min-price", () => {
-            expect(goodObject.currentPrice).toBe(goodObject.minPrice)
+            expect(goodObject.currentPrice).toBe(GoodClass.minPrice)
         })
         it("Min-price should be more than zero", () => {
             expect(goodObject.currentPrice).toBeGreaterThan(0)
         })
         it("Max-price should be more than min-price", () => {
-            expect(goodObject.maxPrice).toBeGreaterThan(goodObject.minPrice)
+            expect(GoodClass.maxPrice).toBeGreaterThan(GoodClass.minPrice)
         })
         it("Name should be empty string", () => {
             expect(goodObject.currentName).toBe('')
         })
         it("Name-min-length should be more than zero", () => {
-            expect(goodObject.nameMinLength).toBeGreaterThan(0)
+            expect(GoodClass.nameMinLength).toBeGreaterThan(0)
         })
         it("Name-max-length should be more than name-min-length", () => {
-            expect(goodObject.nameMaxLength).toBeGreaterThan(goodObject.nameMinLength)
+            expect(GoodClass.nameMaxLength).toBeGreaterThan(GoodClass.nameMinLength)
         })
     })
     describe('Setter Testing', () => {
@@ -58,26 +58,26 @@ describe('Good Class Unit Testing', () => {
             goodObject = new GoodClass()
         })
         it("Quantity should be grater than or equal min-quantity", () => {
-            expect(() => {goodObject.currentQuantity = goodObject.minQuantity-1}).toThrow(RangeError)
+            expect(() => {goodObject.currentQuantity = GoodClass.minQuantity-1}).toThrow(RangeError)
         })
         it("Quantity should be less than or equal max-quantity", () => {
-            expect(() => {goodObject.currentQuantity = goodObject.maxQuantity+1}).toThrow(RangeError)
+            expect(() => {goodObject.currentQuantity = GoodClass.maxQuantity+1}).toThrow(RangeError)
         })
         it("Type should be valid type", () => {
             const invalidType = 'test-'+Math.random()
             expect(() => {goodObject.currentType = invalidType}).toThrow(TypeError)
         })
         it("Price should be greater than or equal min-price", () => {
-            expect(() => {goodObject.currentPrice = goodObject.minPrice-1}).toThrow(RangeError)
+            expect(() => {goodObject.currentPrice = GoodClass.minPrice-1}).toThrow(RangeError)
         })
         it("Price should be less than or equal max-price", () => {
-            expect(() => {goodObject.currentPrice = goodObject.maxPrice+1}).toThrow(RangeError)
+            expect(() => {goodObject.currentPrice = GoodClass.maxPrice+1}).toThrow(RangeError)
         })
         it("Name length should be greater than or equal min-name-length", () => {
             expect(() => {goodObject.currentName = ''}).toThrow(RangeError)
         })
         it("Name length should be less than or equal max-name-length", () => {
-            const tempName = Array.from({length:goodObject.nameMaxLength+1}).fill(0).toString()
+            const tempName = Array.from({length:GoodClass.nameMaxLength+1}).fill(0).toString()
             expect(() => {goodObject.currentName = tempName}).toThrow(RangeError)
         })
     })
@@ -87,13 +87,13 @@ describe('Good Class Unit Testing', () => {
         })
         it("Tax ratio should be 15%", () => {
             goodObject.isImported = true
-            const notTaxFreeType = goodObject.validTypes.find((type: string) => !(goodObject.taxFreeTypes.includes(type)))
+            const notTaxFreeType = GoodClass.validTypes.find((type: string) => !(goodObject.taxFreeTypes.includes(type)))
             goodObject.type = notTaxFreeType
             expect(goodObject.taxRatio).toBe(15)
         })
         it("Tax ratio should be 10%", () => {
             goodObject.isImported = false
-            const notTaxFreeType = goodObject.validTypes.find((type: string) => !(goodObject.taxFreeTypes.includes(type)))
+            const notTaxFreeType = GoodClass.validTypes.find((type: string) => !(goodObject.taxFreeTypes.includes(type)))
             goodObject.type = notTaxFreeType
             expect(goodObject.taxRatio).toBe(10)
         })
@@ -135,7 +135,7 @@ describe('Good Class Unit Testing', () => {
         })
         it("Price after tax should be 54.65", () => {
             goodObject.isImported = true
-            const notTaxFreeType = goodObject.validTypes.find((type: string) => !(goodObject.taxFreeTypes.includes(type)))
+            const notTaxFreeType = GoodClass.validTypes.find((type: string) => !(goodObject.taxFreeTypes.includes(type)))
             goodObject.type = notTaxFreeType
             goodObject.price = 47.50
             goodObject.quantity = 1
@@ -145,8 +145,8 @@ describe('Good Class Unit Testing', () => {
             goodObject.isImported = false
             goodObject.type = goodObject.taxFreeTypes[0]
             goodObject.price = 3
-            goodObject.quantity = goodObject.maxQuantity
-            expect(goodObject.priceAfterTex).toBe((goodObject.price*goodObject.maxQuantity).toFixed(2))
+            goodObject.quantity = GoodClass.maxQuantity
+            expect(goodObject.priceAfterTex).toBe((goodObject.price*GoodClass.maxQuantity).toFixed(2))
         })
     })
 })
