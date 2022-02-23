@@ -43,7 +43,7 @@ export class GoodClass{
     }
 
     set currentType(newType: string) {
-        const isValidType = (newType in this.validTypes)
+        const isValidType = this.validTypes.includes(newType)
         if (!isValidType){
             throw new TypeError()
         }
