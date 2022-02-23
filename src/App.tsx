@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { GoodClass } from './modules/Good';
 import { GoodsList } from './components/GoodsList';
+import useArray from './customHooks/useArray';
 
 export const App = () => {
 
@@ -24,7 +25,7 @@ export const App = () => {
   good3.currentType = good3.validTypes[1]
   goodsInitialArray.push(good3)
 
-  const [goods,setGood] = useState(goodsInitialArray)
+  const { array: goods, set:setGood, push:addGood, clear:removeAllGoods } = useArray(goodsInitialArray)
 
   return (
     <GoodsList goods={goods}/>
