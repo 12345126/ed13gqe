@@ -29,20 +29,20 @@ export const GoodsDetails: FC<GoodsDetailsInterface> = (props) => {
 }
 
 const displayGoodsDetails = (goods: Array<GoodClass>) => {
-    let goodsTotalTaxes = 0
+    let goodsTotalPrice = 0
     let goodsTotalPriceAfterTax = 0
     return <div>
         {goods.map((good) => {
         //@ts-ignore
             goodsTotalPriceAfterTax += parseFloat(good.priceAfterTex)
-            goodsTotalTaxes += ((good.taxRatio/100)) * good.currentPrice
+            goodsTotalPrice += good.currentPrice
             return (<h3 key={good.currentName}>
                 {good.currentQuantity}
                 {good.currentIsImported ? 'Imported' : ''}
                 {good.currentName}: {good.priceAfterTex}
             </h3>)
         })}
-        <h2>Sales Taxes: {goodsTotalTaxes.toFixed(2)}</h2>
+        <h2>Sales Taxes: {(goodsTotalPriceAfterTax-goodsTotalPrice).toFixed(2)}</h2>
         <h2>Total: {goodsTotalPriceAfterTax.toFixed(2)}</h2>
     </div>
 }
