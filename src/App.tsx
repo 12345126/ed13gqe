@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { GoodClass } from './modules/Good';
 import { GoodsList } from './components/GoodsList';
 import useArray from './customHooks/useArray';
@@ -23,14 +22,18 @@ export const App = () => {
   const good3 = new GoodClass()
   good3.currentName = 'good 3'
   good3.currentPrice = 12
-  good3.currentType = good3.validTypes[1]
+  good3.currentType = GoodClass.validTypes[1]
   goodsInitialArray.push(good3)
 
   const { array: goods, set:setGood, push:addGood, clear:removeAllGoods } = useArray(goodsInitialArray)
 
   return (<>
+    <hr/><hr/>
     <GoodsList goods={goods} />
-    <GoodAdder/>
+    <hr/><hr/>
+    <GoodAdder addGood={addGood}/>
+    <hr /><hr />
+    
   </>)
 }
 

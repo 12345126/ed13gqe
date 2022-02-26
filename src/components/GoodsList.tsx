@@ -10,20 +10,19 @@ export const GoodsList:FC<GoodListInterface> = (parmas) => {
     const {goods} = parmas
 
     return <>
-        <h1>list</h1>
         <table style={{width:'100%'}}>
             <thead>
                 <tr>
-                    <th>Product Quantity</th>
-                    <th>Is Product Imported</th>
-                    <th>Product Type</th>
-                    <th>Product Name</th>
-                    <th>Product Price</th>
+                    <th>Good Quantity</th>
+                    <th>Is Good Imported</th>
+                    <th>Good Type</th>
+                    <th>Good Name</th>
+                    <th>Good Price</th>
                 </tr>
             </thead>
             <tbody>
                 {goods.map(good => {
-                    return <tr>
+                    return <tr key={good.currentName}>
                         <td>{good.currentQuantity}</td>
                         <td>{(good.currentIsImported) ? 'Yes' : 'No'}</td>
                         <td>{good.currentType}</td>

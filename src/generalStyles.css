@@ -7,7 +7,7 @@ table {
 td,
 th {
   border: 1px solid #ddd;
-  padding: 8px;
+  padding-left: 8px;
 }
 
 tr:nth-child(even) {
@@ -15,9 +15,21 @@ tr:nth-child(even) {
 }
 
 th {
-  padding-top: 12px;
-  padding-bottom: 12px;
   text-align: left;
+  background-color: #3a4be4;
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+td {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.success-btn {
+  width: 100%;
+  padding: 10px;
   background-color: #04aa6d;
   color: white;
 }
