@@ -27,7 +27,7 @@ export const GoodAdder: FC<GoodAdderInterface> = (props) => {
 
         setIsError(false)
         const goodQuantity = parseInt(goodQuantityInput.current!.value) 
-        const goodIsImported = (goodQuantityInput.current!.value === 'Yes')
+        const goodIsImported = (goodIsImportedInput.current!.value === 'Yes')
         const goodType = goodTypeInput.current!.value
         const goodName = goodNameInput.current!.value
         const goodPrice = parseFloat(goodPriceInput.current!.value)
