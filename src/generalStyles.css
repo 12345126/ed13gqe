@@ -33,3 +33,7 @@ td {
   background-color: #04aa6d;
   color: white;
 }
+
+.success-btn:disabled {
+  background-color: gray;
+}

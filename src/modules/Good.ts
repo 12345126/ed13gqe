@@ -13,7 +13,7 @@ export class GoodClass{
     static readonly nameMaxLength = 10
     private name:string
     
-    static readonly minPrice = 1
+    static readonly minPrice = 0.5
     static readonly maxPrice = 1000
     private price:number
 
