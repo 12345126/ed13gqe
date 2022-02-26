@@ -5,8 +5,8 @@ import { GoodClass } from '../modules/Good'
 interface GoodListInterface{
     goods:Array<GoodClass>
 }
-export const GoodsList:FC<GoodListInterface> = (parmas) => {
-    const {goods} = parmas
+export const GoodsList:FC<GoodListInterface> = (prams) => {
+    const {goods} = prams
 
     return <>
         <table style={{width:'100%'}}>
@@ -31,6 +31,6 @@ export const GoodsList:FC<GoodListInterface> = (parmas) => {
                 })}
             </tbody>
         </table>
-    
+        {(goods.length === 0) ? <h1 style={{textAlign:'center'}}>There is no goods !</h1> : <></>}
     </>
 }

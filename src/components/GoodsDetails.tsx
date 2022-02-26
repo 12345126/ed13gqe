@@ -23,7 +23,7 @@ export const GoodsDetails: FC<GoodsDetailsInterface> = (props) => {
     return <div>
         {(isShownDetails) ?
             <button className='success-btn' style={{backgroundColor:'orange'}} onClick={reset}>Reset</button>
-            : <button className='success-btn' disabled={!(goods.length)} onClick={displayResult}>Result</button>}
+            : <button className='success-btn' disabled={(goods.length === 0)} onClick={displayResult}>Result</button>}
         {(isShownDetails) ? displayGoodsDetails(goods) : <></>}
     </div>
 }
@@ -40,19 +40,19 @@ const displayGoodsDetails = (goods: Array<GoodClass>) => {
                 <span style={{color:'blue'}}> {good.currentQuantity} </span>
                 <span style={{color:'red'}}> {good.currentIsImported ? 'Imported' : ''} </span>
                 <span style={{ color: 'green' }}>{good.currentName}</span>
-                <span style={{color:'brown'}}>:</span> &nbsp;
+                <span style={{color:'brown'}}>:</span>&nbsp;
                 {good.priceAfterTex}
             </h3>)
         })}
         <hr/>
         <h2>
             <span style={{color:'green'}}>Sales Taxes</span>
-            <span style={{color:'brown'}}>:</span> &nbsp;
+            <span style={{color:'brown'}}>:</span>&nbsp;
             {(goodsTotalPriceAfterTax - goodsTotalPrice).toFixed(2)}
         </h2>
         <h2>
             <span style={{color:'green'}}>Total</span>
-            <span style={{color:'brown'}}>:</span> &nbsp;
+            <span style={{color:'brown'}}>:</span>&nbsp;
             {goodsTotalPriceAfterTax.toFixed(2)}
         </h2>
     </div>

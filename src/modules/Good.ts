@@ -1,20 +1,20 @@
 export class GoodClass{
-    static readonly minQuantity = 1
-    static readonly maxQuantity = 10
+    static readonly minQuantity = 1 // you can change this value
+    static readonly maxQuantity = 10 // you can change this value
     private quantity:number
     
     private isImported:boolean
 
-    static readonly validTypes = ['books', 'food', 'medical', 'other']
-    readonly taxFreeTypes = ['books', 'food', 'medical']
+    static readonly validTypes = ['books', 'food', 'medical', 'other'] // you can change this value
+    readonly taxFreeTypes = ['books', 'food', 'medical'] // you can change this value
     private type:string
     
-    static readonly nameMinLength = 1
-    static readonly nameMaxLength = 10
+    static readonly nameMinLength = 1 // you can change this value
+    static readonly nameMaxLength = 10 // you can change this value
     private name:string
     
-    static readonly minPrice = 0.5
-    static readonly maxPrice = 1000
+    static readonly minPrice = 0.5 // you can change this value
+    static readonly maxPrice = 1000 // you can change this value
     private price:number
 
     constructor() {
@@ -53,7 +53,7 @@ export class GoodClass{
     set currentPrice(newPrice:number) {
         const isValidRange = this.isInRage(newPrice, GoodClass.minPrice, GoodClass.maxPrice)
         if (!isValidRange){
-            throw new RangeError('current price out of range')
+            throw new RangeError(`current price must be in range of [${GoodClass.minPrice},${GoodClass.maxPrice}]`)
         }
         this.price = newPrice
     }
@@ -61,7 +61,7 @@ export class GoodClass{
     set currentName(newName: string) {
         const isValidRange = this.isInRage(newName.length, GoodClass.nameMinLength,GoodClass.nameMaxLength)
         if (!isValidRange){
-            throw new RangeError('current name  length out of range')
+            throw new RangeError(`current name length must be in range of [${GoodClass.nameMinLength},${GoodClass.nameMaxLength}]`)
         }
         this.name = newName
     }
