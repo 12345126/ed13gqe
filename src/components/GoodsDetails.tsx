@@ -37,12 +37,23 @@ const displayGoodsDetails = (goods: Array<GoodClass>) => {
             goodsTotalPriceAfterTax += parseFloat(good.priceAfterTex)
             goodsTotalPrice += good.currentPrice
             return (<h3 key={good.currentName}>
-                {good.currentQuantity}
-                {good.currentIsImported ? 'Imported' : ''}
-                {good.currentName}: {good.priceAfterTex}
+                <span style={{color:'blue'}}> {good.currentQuantity} </span>
+                <span style={{color:'red'}}> {good.currentIsImported ? 'Imported' : ''} </span>
+                <span style={{ color: 'green' }}>{good.currentName}</span>
+                <span style={{color:'brown'}}>:</span> &nbsp;
+                {good.priceAfterTex}
             </h3>)
         })}
-        <h2>Sales Taxes: {(goodsTotalPriceAfterTax-goodsTotalPrice).toFixed(2)}</h2>
-        <h2>Total: {goodsTotalPriceAfterTax.toFixed(2)}</h2>
+        <hr/>
+        <h2>
+            <span style={{color:'green'}}>Sales Taxes</span>
+            <span style={{color:'brown'}}>:</span> &nbsp;
+            {(goodsTotalPriceAfterTax - goodsTotalPrice).toFixed(2)}
+        </h2>
+        <h2>
+            <span style={{color:'green'}}>Total</span>
+            <span style={{color:'brown'}}>:</span> &nbsp;
+            {goodsTotalPriceAfterTax.toFixed(2)}
+        </h2>
     </div>
 }

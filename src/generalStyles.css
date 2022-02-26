@@ -32,8 +32,10 @@ td {
   padding: 10px;
   background-color: #04aa6d;
   color: white;
+  cursor: pointer;
 }
 
 .success-btn:disabled {
   background-color: gray;
+  cursor: default;
 }
