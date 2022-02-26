@@ -33,7 +33,7 @@ export class GoodClass{
     set currentQuantity(newQuantity:number) {
         const isValidRangeQuantity = this.isInRage(newQuantity, GoodClass.minQuantity, GoodClass.maxQuantity)
         if (!isValidRangeQuantity) {
-            throw new RangeError()
+            throw new RangeError('current quantity out of range')
         }
         this.quantity = newQuantity
     }
@@ -45,7 +45,7 @@ export class GoodClass{
     set currentType(newType: string) {
         const isValidType = GoodClass.validTypes.includes(newType)
         if (!isValidType){
-            throw new TypeError()
+            throw new TypeError('current type is invalid')
         }
         this.type = newType
     }
@@ -53,7 +53,7 @@ export class GoodClass{
     set currentPrice(newPrice:number) {
         const isValidRange = this.isInRage(newPrice, GoodClass.minPrice, GoodClass.maxPrice)
         if (!isValidRange){
-            throw new RangeError()
+            throw new RangeError('current price out of range')
         }
         this.price = newPrice
     }
@@ -61,7 +61,7 @@ export class GoodClass{
     set currentName(newName: string) {
         const isValidRange = this.isInRage(newName.length, GoodClass.nameMinLength,GoodClass.nameMaxLength)
         if (!isValidRange){
-            throw new RangeError()
+            throw new RangeError('current name  length out of range')
         }
         this.name = newName
     }
