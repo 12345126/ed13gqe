@@ -27,7 +27,7 @@ export const App = () => {
   goodsInitialArray.push(good2)
   //--------------------------------------------------
 
-  const { array: goods, set:setGood, push:addGood, clear:removeAllGoods } = useArray(goodsInitialArray)
+  const { array: goods, push:addGood, clear:removeAllGoods } = useArray(goodsInitialArray)
 
   return (<>
     <hr/><hr/>
