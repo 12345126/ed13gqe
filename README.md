@@ -18,7 +18,7 @@ npm start
 
 # Some Assumptions I Made:
 
-Good Quantity must be in ragne of [1,10] | changeable, look at Good.ts
+Good Quantity must be in range of [1,10] | changeable, look at Good.ts
 
 Good Name length must be in ragne of [1,10] | changeable, look at Good.ts
 
