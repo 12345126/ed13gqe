@@ -31,6 +31,6 @@ export const GoodsList:FC<GoodListInterface> = (prams) => {
                 })}
             </tbody>
         </table>
-        {(goods.length === 0) ? <h1 style={{textAlign:'center'}}>There is no goods !</h1> : <></>}
+        {(goods.length === 0) ? <h1 style={{textAlign:'center'}}>There are no goods!</h1> : <></>}
     </>
 }
